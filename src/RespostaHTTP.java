@@ -1,4 +1,3 @@
-package model;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Arrays;
@@ -17,7 +16,7 @@ public class RespostaHTTP {
     private int codigoResposta;
     private String mensagem;
     private byte[] conteudoResposta;
-    private Map<String, List> cabecalhos;
+    private Map<String, List<String>> cabecalhos;
     private OutputStream saida;
 
     public RespostaHTTP() {
@@ -80,13 +79,22 @@ public class RespostaHTTP {
     public String toString() {
         StringBuilder str = new StringBuilder();
         str.append(protocolo).append(" ").append(codigoResposta).append(" ").append(mensagem).append("\r\n");
-        for (Map.Entry<String, List> entry : cabecalhos.entrySet()) {
+        for (Map.Entry<String, List<String>> entry : cabecalhos.entrySet()) {
             str.append(entry.getKey());
             String stringCorrigida = Arrays.toString(entry.getValue().toArray()).replace("[", "").replace("]", "");
             str.append(": ").append(stringCorrigida).append("\r\n");
         }
         str.append("\r\n");
         return str.toString();
+    }
+
+    //getters e setters
+    public void setConteudoResposta(byte[] conteudoResposta) {
+        this.conteudoResposta = conteudoResposta;
+    }
+
+    public void setSaida(OutputStream saida) {
+        this.saida = saida;
     }
 
     public String getProtocolo() {
@@ -113,27 +121,21 @@ public class RespostaHTTP {
         this.mensagem = mensagem;
     }
 
-    public byte[] getConteudoResposta() {
-        return conteudoResposta;
-    }
-
-    public void setConteudoResposta(byte[] conteudoResposta) {
-        this.conteudoResposta = conteudoResposta;
-    }
-
-    public Map<String, List> getCabecalhos() {
+    public Map<String, List<String>> getCabecalhos() {
         return cabecalhos;
     }
 
-    public void setCabecalhos(Map<String, List> cabecalhos) {
+    public void setCabecalhos(Map<String, List<String>> cabecalhos) {
         this.cabecalhos = cabecalhos;
+    }
+
+    public byte[] getConteudoResposta() {
+        return conteudoResposta;
     }
 
     public OutputStream getSaida() {
         return saida;
     }
 
-    public void setSaida(OutputStream saida) {
-        this.saida = saida;
-    }
+
 }

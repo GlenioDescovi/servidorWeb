@@ -1,4 +1,3 @@
-package model;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,12 +14,13 @@ import java.util.TreeMap;
 
 public class RequisicaoHTTP {
 
+
     private String protocolo;
     private String recurso;
     private String metodo;
     private boolean manterViva = true;
-    private long tempoLimite = 3000;
-    private Map<String, List> cabecalhos;
+    private int tempoLimite = 3000;
+    private Map<String, List<String>> cabecalhos;
 
     public static RequisicaoHTTP lerRequisicao(InputStream entrada) throws IOException {
         RequisicaoHTTP requisicao = new RequisicaoHTTP();
@@ -30,6 +30,7 @@ public class RequisicaoHTTP {
          contem as informaçoes da requisição
          */
         String linhaRequisicao = buffer.readLine();
+        System.out.println(linhaRequisicao);
         //quebra a string pelo espaço em branco
         String[] dadosReq = linhaRequisicao.split(" ");
         //pega o metodo
@@ -61,30 +62,21 @@ public class RequisicaoHTTP {
         cabecalhos.put(chave, Arrays.asList(valores));
     }
 
-    //getters e setters vão aqui
-
-    public String getProtocolo() {
-        return protocolo;
-    }
-
-    public void setProtocolo(String protocolo) {
-        this.protocolo = protocolo;
-    }
-
-    public String getRecurso() {
-        return recurso;
+    //getters e setters
+    public void setMetodo(String metodo) {
+        this.metodo = metodo;
     }
 
     public void setRecurso(String recurso) {
         this.recurso = recurso;
     }
 
-    public String getMetodo() {
-        return metodo;
+    public void setProtocolo(String protocolo) {
+        this.protocolo = protocolo;
     }
 
-    public void setMetodo(String metodo) {
-        this.metodo = metodo;
+    public void setCabecalhos(Map header) {
+        this.cabecalhos = header;
     }
 
     public boolean isManterViva() {
@@ -95,19 +87,27 @@ public class RequisicaoHTTP {
         this.manterViva = manterViva;
     }
 
-    public long getTempoLimite() {
+    public int getTempoLimite() {
         return tempoLimite;
     }
 
-    public void setTempoLimite(long tempoLimite) {
+    public void setTempoLimite(int tempoLimite) {
         this.tempoLimite = tempoLimite;
     }
 
-    public Map<String, List> getCabecalhos() {
-        return cabecalhos;
+    public String getProtocolo() {
+        return protocolo;
     }
 
-    public void setCabecalhos(Map<String, List> cabecalhos) {
-        this.cabecalhos = cabecalhos;
+    public String getRecurso() {
+        return recurso;
+    }
+
+    public String getMetodo() {
+        return metodo;
+    }
+
+    public Map<String, List<String>> getCabecalhos() {
+        return cabecalhos;
     }
 }

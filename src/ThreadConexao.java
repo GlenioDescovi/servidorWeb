@@ -1,10 +1,8 @@
-package model;
 import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.nio.file.Files;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,14 +33,14 @@ public class ThreadConexao implements Runnable {
                 //se a conexao esta marcada para se mantar viva entao seta keepalive e o timeout
                 if (requisicao.isManterViva()) {
                     socket.setKeepAlive(true);
-                    socket.setSoTimeout((int) requisicao.getTempoLimite());
+                    socket.setSoTimeout(requisicao.getTempoLimite());
                 } else {
                     //se nao seta um valor menor suficiente para uma requisicao
                     socket.setSoTimeout(300);
                 }
 
                 //se o caminho foi igual a / entao deve pegar o /index.html
-                if (requisicao.getRecurso().equals("/home")) {
+                if (requisicao.getRecurso().equals("/")) {
                     requisicao.setRecurso("index.html");
                 }
                 //abre o arquivo pelo caminho
@@ -61,9 +59,9 @@ public class ThreadConexao implements Runnable {
                 //lê todo o conteúdo do arquivo para bytes e gera o conteudo de resposta
                 resposta.setConteudoResposta(Files.readAllBytes(arquivo.toPath()));
                 //converte o formato para o GMT espeficicado pelo protocolo HTTP
-                String dataFormatada = String.valueOf(Calendar.getInstance().getTime());
+                String dataFormatada = Util.formatarDataGMT(new Date());
                 //cabeçalho padrão da resposta HTTP/1.1
-                resposta.setCabecalho("Location", "https://localhost:8080/");
+                resposta.setCabecalho("Location", "http://localhost:8000/");
                 resposta.setCabecalho("Date", dataFormatada);
                 resposta.setCabecalho("Server", "MeuServidor/1.0");
                 resposta.setCabecalho("Content-Type", "text/html");
@@ -85,4 +83,6 @@ public class ThreadConexao implements Runnable {
 
         }
     }
+
+
 }
