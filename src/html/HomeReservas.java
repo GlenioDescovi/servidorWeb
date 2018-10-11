@@ -23,6 +23,22 @@ public class HomeReservas {
                                 "<div class=\"alert alert-success\">" +
                                     "<strong>Seja bem!</strong> " + nome.toUpperCase() +
                                 "</div>" +
+                                "<table class=\"table table-hover\">"+
+                                    "<tr>"+
+                                        "<th>"+
+                                            "Poltrona"+
+                                        "</th>"+
+                                        "<th>"+
+                                        "Reservado? "+
+                                        "</th>"+
+                                    "</tr>"+
+                                    "<tr>"+
+                                        "<th>"+ nome.toUpperCase() +
+                                        "</th>"+
+                                        "<th>"+ nome.toUpperCase() +
+                                        "</th>"+
+                                    "</tr>"+
+                                "</table>"+
                             "</div>"+
                         "</div>"+
                     "</body>" +
