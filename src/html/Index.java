@@ -29,7 +29,7 @@ public class Index {
                                             "<form action='/acessar' method='get' class=\"form-signin\">" +
                                                 "<input type=\"text\" name=\"teste\" class=\"form-control\" placeholder=\"Email\" value=\"" + nome + "\" required autofocus>" +
                                                     "<br>" +
-                                                "<input type=\"password\" class=\"form-control\" placeholder=\"Password\" required name=\"id\">" +
+                                                "<input type=\"password\" class=\"form-control\" placeholder=\"Password\" required >" +
                                                     "<br>" +
                                                 "<button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">" +
                                                 "Sign in</button>" +

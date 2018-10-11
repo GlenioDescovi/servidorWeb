@@ -68,9 +68,7 @@ public class ThreadConexao implements Runnable {
                 } else if (requisicao.getRecurso().contains("/acessar")) {
                     String[] dadosForm = requisicao.getRecurso().split("[?,=,&]");//split que deixa apenas o nome do input e os valores dele
                     // recebe os dados (nome e o numero do banco) do usuario que vai reservar
-                    nomeUsuario=dadosForm[2];
-                    System.out.println("AQUIIIIIIIII");
-                    System.out.println(dadosForm[2]);
+
                     res= new HomeReservas().homeReservas(dadosForm[2]);
                     achou=true;
                 }

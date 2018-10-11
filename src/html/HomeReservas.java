@@ -27,7 +27,5 @@ public class HomeReservas {
                         "</div>"+
                     "</body>" +
                 "</html>";
-
-
     }
 }
