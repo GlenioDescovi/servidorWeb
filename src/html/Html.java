@@ -104,126 +104,84 @@ public class Html {
             "                    <li><i class=\"fa fa-envelope mr-2\"> maicocamargo08@hotmail.com</i></li>\n" +
             "                    <li><i class=\"fa fa-envelope mr-2\"> -----</i></li>\n" +
             "                    <li><i class=\"fa fa-github mr-2\"></i><a href=\"https://github.com/MaicoCamargo\">Maico Camargo</a></li>\n" +
-            "                    <li><i class=\"fa fa-github mr-2\"></i><a href=\"https://github.com/GlenioDescovi\">Glênio Descovi</a></li>\n" +
+            "                    <li><i class=\"fa fa-github mr-2\"></i><a href=\"https://github.com/GlenioDescovi\">Glenio Descovi</a></li>\n" +
             "                    \n" +
             "                </ul>\n" +
             "            </div>\n" +
             "            <div class=\"col-12 copyright mt-3\">\n" +
             "    \n" +
-            "                <p class=\"text-right text-muted\">created by <a href=\"https://www.facebook.com/camargo.maico\"><strong>Maico Camargo</strong></a> | <a href=\"https://www.facebook.com/glenio.descovi\"><strong>Glênio Descovi</strong></a></p>\n" +
+            "                <p class=\"text-right text-muted\">created by <a href=\"https://www.facebook.com/camargo.maico\"><strong>Maico Camargo</strong></a> | <a href=\"https://www.facebook.com/glenio.descovi\"><strong>Glenio Descovi</strong></a></p>\n" +
             "            </div>\n" +
             "        </div>\n" +
             "    </div>\n" +
             "</footer>";
 
-
-    public String bancos="";
-    public String lugaresReservar ="<div class=\"container mb-4\">\n" +
-            "    <div class=\"row\">\n" +
-            "        <div class=\"col-12\">\n" +
-            "            <div class=\"table-responsive\">\n" +
-            "                <table class=\"table table-striped\">\n" +
-            "                    <thead>\n" +
-            "                        <tr>\n" +
-            "                            <th scope=\"col\"> </th>\n" +
-            "                            <th scope=\"col\">Poltrona</th>\n" +
-            "                            <th scope=\"col\">Reservado</th>\n" +
-            "                            <th scope=\"col\" class=\"text-center\">Reservar para</th>\n" +
-            "                            <th scope=\"col\" class=\"text-right\">Preço</th>\n" +
-            "                            <th> </th>\n" +
-            "                        </tr>\n" +
-            "                    </thead>\n" +
-            "                    <tbody>\n" +
-            "                        <tr>\n" +
-            "                            <td><img src=\"https://dummyimage.com/50x50/55595c/fff\" /> </td>\n" +
-            "                            <td>Product Name Toto</td>\n" +
-            "                            <td>In stock</td>\n" +
-            "                            <td><input class=\"form-control\" type=\"text\" name=\"nome\" /></td>\n" +
-            "                            <td class=\"text-right\">33,90 €</td>\n" +
-            "                            <td class=\"text-right\"><button class=\"btn btn-sm btn-danger\"><i class=\"fa fa-times\"></i> </button> </td>\n" +
-            "                        </tr>\n" +
-            "                        <tr>\n" +
-                                                printarOnibus(new Bus())+
-            "                        </tr>\n" +
-            "                        <tr>\n" +
-            "                            <td></td>\n" +
-            "                            <td></td>\n" +
-            "                            <td></td>\n" +
-            "                            <td></td>\n" +
-            "                            <td><strong>Total</strong></td>\n" +
-            "                            <td class=\"text-right\"><strong>346,90 €</strong></td>\n" +
-            "                        </tr>\n" +
-            "                    </tbody>\n" +
-            "                </table>\n" +
-            "            </div>\n" +
-            "        </div>\n" +
-            "        <div class=\"col mb-2\">\n" +
-            "            <div class=\"row\">\n" +
-            "                <div class=\"col-sm-12  col-md-6\">\n" +
-            "                    <button class=\"btn btn-block btn-light\">Cancelar</button>\n" +
-            "                </div>\n" +
-            "                <div class=\"col-sm-12 col-md-6 text-right\">\n" +
-            "                    <button class=\"btn btn-lg btn-block btn-success text-uppercase\">Reservar</button>\n" +
-            "                </div>\n" +
-            "            </div>\n" +
-            "        </div>\n" +
-            "    </div>\n" +
-            "</div>";
+    String bancos="";
 
 
-    public String getHTML(){
-        return CABECALHO + lugaresReservar +RODA_PE;
-    }
 
     public String printarOnibus(Bus bus){
+
+         String lu ="<div class=\"container mb-4\">\n" +
+                "    <div class=\"row\">\n" +
+                "        <div class=\"col-12\">\n" +
+                "            <div class=\"table-responsive\">\n" +
+                "                <table class=\"table table-striped\">\n" +
+                "                    <thead>\n" +
+                "                        <tr>\n" +
+                "                            <th scope=\"col\"> </th>\n" +
+                "                            <th scope=\"col\">Poltrona</th>\n" +
+                "                            <th scope=\"col\">Reservado</th>\n" +
+                "                            <th scope=\"col\" class=\"text-center\">Reservar para</th>\n" +
+                "                            <th scope=\"col\" class=\"text-right\">Valor(moeda local)</th>\n" +
+                "                            <th> </th>\n" +
+                "                        </tr>\n" +
+                "                    </thead>\n" +
+                "                    <tbody>\n";
+
+         String ga="\n";
+
         for (int i=0; i<bus.getAssentos().size(); i++){
-            bancos = "<td>"+bus.getAssentos().get(i).isReserved()+"</td>\n";
+            ga += "" +
+                    "                                      <tr><td><img src=\"https://dummyimage.com/50x50/55595c/fff\" /> </td> " +
+                    "                                        <td>" +bus.getAssentos().get(i).getIdAssento()+"</td> " +
+                    "                                        <td>"+bus.getAssentos().get(i).isReserved()+"</td> " +
+                    "                                       <td><input class=\"form-control\" type=\"text\" name=\"nome\" /></td> " +
+                    "                                       <td class=\"text-right\">500 pila </td> " +
+                    "                                         <td class=\"text-right \"><button class=\"btn btn-sm btn-success\"><i class=\"fa fa-check\"></i> </button> </td></tr>\n";
         }
-        return  bancos;
+
+
+        String res="                        </tr>\n" +
+                "                        </tr>\n" +
+                "                        <tr>\n" +
+                "                            <td></td>\n" +
+                "                            <td></td>\n" +
+                "                            <td></td>\n" +
+                "                            <td></td>\n" +
+                "                            <td><strong>Total</strong></td>\n" +
+                "                            <td class=\"text-right\"><strong>346,90 pila</strong></td>\n" +
+                "                        </tr>\n" +
+                "                    </tbody>\n" +
+                "                </table>\n" +
+                "            </div>\n" +
+                "        </div>\n" +
+                "        <div class=\"col mb-2\">\n" +
+                "            <div class=\"row\">\n" +
+                "                <div class=\"col-sm-12  col-md-6\">\n" +
+                "                    <button class=\"btn btn-block btn-light\">Cancelar</button>\n" +
+                "                </div>\n" +
+                "                <div class=\"col-sm-12 col-md-6 text-right\">\n" +
+                "                    <button class=\"btn btn-lg btn-block btn-success text-uppercase\">Reservar</button>\n" +
+                "                </div>\n" +
+                "            </div>\n" +
+                "        </div>\n" +
+                "    </div>\n" +
+                "</div>";
+        System.out.println(bancos);
+        String lugares= lu+ga+res;
+        return  CABECALHO +lugares+ RODA_PE;
     }
 
-    /*public String index(String nome){
-
-        return "<!DOCTYPE html>" +
-                "<html>" +
-                    "<head>" +
-                "    <meta charset=\"ISO-8859-1\">" +
-                "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">" +
-                "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" +
-                "    <meta http-equiv=\"Content-Type\" content=\"text/html;charset=ISO-8859-1\">" +
-                "    <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\">" +
-                "    <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>" +
-                "    <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>" +
-
-                    "<title>| Home</title>" +
-                    "</head>" +
-                        "<body>" +
-                            "<div class=\"container\">" +
-                                "<div class=\"row\">" +
-                                    "<div class=\"col-sm-6 col-md-4 col-md-offset-4\">" +
-                                        "<h1 class=\"text-center login-title\">Sign in to continue to Trade</h1>" +
-                                        "<div class=\"account-wall\">" +
-                                            "<form action='/acessar' method='get' class=\"form-signin\">" +
-                                                "<input type=\"text\" name=\"teste\" class=\"form-control\" placeholder=\"Email\" value=\"" + nome + "\" required autofocus>" +
-                                                    "<br>" +
-                                                "<input type=\"password\" class=\"form-control\" placeholder=\"Password\" required >" +
-                                                    "<br>" +
-                                                "<button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">" +
-                                                "Sign in</button>" +
-                                                "<label class=\"checkbox pull-left\">" +
-                                                "<input type=\"checkbox\" value=\"remember-me\">" +
-                                                "Remember me" +
-                                                "</label>" +
-                                                "<a href=\"#\" class=\"pull-right need-help\">Need help? </a><span class=\"clearfix\"></span>" +
-                                            "</form>" +
-                                        "</div>" +
-                                        "<a href=\"#\" class=\"text-center new-account\">Create an account </a>" +
-                                    "</div>" +
-                                "</div>" +
-                            "</div>" +
-                            "<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js\"></script>" +
-                        "</body>" +
-                "</html>";
-    }*/
 
 }

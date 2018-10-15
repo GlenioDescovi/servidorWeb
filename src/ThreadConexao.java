@@ -18,9 +18,11 @@ public class ThreadConexao implements Runnable {
     private final Socket socket;
     private boolean conectado;
     private String nomeUsuario;
+    private Bus bus;
 
-    public ThreadConexao(Socket socket) {
+    public ThreadConexao(Socket socket, Bus bus) {
         this.socket = socket;
+        this.bus = bus;
     }
 
     @Override
@@ -46,8 +48,8 @@ public class ThreadConexao implements Runnable {
                 if (requisicao.getRecurso().equals("/")) {
                     //retorna a pagina com os banco do bus que podem ser reservados
                     resposta = new RespostaHTTP(requisicao.getProtocolo(), 200, "OK");
+                    resposta.setConteudoResposta(new Html().printarOnibus(bus).getBytes("UTF-8"));
 
-                    resposta.setConteudoResposta(new Html().getHTML().getBytes("UTF-8"));
                 } else if(requisicao.getRecurso().contains("/login")){
 
                     resposta = new RespostaHTTP(requisicao.getProtocolo(), 200, "OK");

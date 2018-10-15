@@ -11,9 +11,15 @@ public class Bus {
         Assento assento1 = new Assento(1);
         Assento assento2 = new Assento(2);
         Assento assento3 = new Assento(3);
-        assentos.add(assento3);
-        assentos.add(assento2);
+        Assento assento4 = new Assento(4);
+        Assento assento5 = new Assento(5);
+
         assentos.add(assento1);
+        assentos.add(assento2);
+        assentos.add(assento3);
+        assentos.add(assento4);
+        assentos.add(assento5);
+
         this.assentos = assentos;
     }
 
