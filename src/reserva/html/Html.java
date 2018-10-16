@@ -92,7 +92,7 @@ public class Html {
             "                <h5>About</h5>\n" +
             "                <hr class=\"bg-white mb-2 mt-0 d-inline-block mx-auto w-25\">\n" +
             "                <p class=\"mb-0\">\n" +
-            "                    Sistema/reserva.servidor.Servidor de reserva de poltronas de onibus desenvolvido em java (<i class=\"fa fa-heart\"></i>) \n" +
+            "                    Sistema / servidor desenvolvido em java (<i class=\"fa fa-heart\"></i>) \n" +
             "                </p>\n" +
             "            </div>\n" +
             "\n" +
@@ -127,34 +127,17 @@ public class Html {
             "                            <th scope=\"col\">Poltrona</th>\n" +
             "                            <th scope=\"col\">Reservado</th>\n" +
             "                            <th scope=\"col\" class=\"text-center\">Reservar para</th>\n" +
-            "                            <th scope=\"col\" class=\"text-right\">Valor(moeda local)</th>\n" +
+            "                            <th scope=\"col\" class=\"text-right\">IP</th>\n" +
+            "                            <th scope=\"col\" class=\"text-right\">Data reserva</th>\n" +
             "                            <th> </th>\n" +
             "                        </tr>\n" +
             "                    </thead>\n" +
             "                    <tbody>\n";
 
-    public static final String RES="                        </tr>\n" +
-            "                        </tr>\n" +
-            "                        <tr>\n" +
-            "                            <td></td>\n" +
-            "                            <td></td>\n" +
-            "                            <td></td>\n" +
-            "                            <td></td>\n" +
-            "                            <td><strong>Total</strong></td>\n" +
-            "                            <td class=\"text-right\"><strong>346,90 pila</strong></td>\n" +
-            "                        </tr>\n" +
+    public static final String RES=
+
             "                    </tbody>\n" +
             "                </table>\n" +
-            "            </div>\n" +
-            "        </div>\n" +
-            "        <div class=\"col mb-2\">\n" +
-            "            <div class=\"row\">\n" +
-            "                <div class=\"col-sm-12  col-md-6\">\n" +
-            "                    <button class=\"btn btn-block btn-light\">Cancelar</button>\n" +
-            "                </div>\n" +
-            "                <div class=\"col-sm-12 col-md-6 text-right\">\n" +
-            "                    <button class=\"btn btn-lg btn-block btn-success text-uppercase\">Reservar</button>\n" +
-            "                </div>\n" +
             "            </div>\n" +
             "        </div>\n" +
             "    </div>\n" +
@@ -168,9 +151,6 @@ public class Html {
      */
     public String inputStyle(Assento assento){
         if (assento.isReserved()){
-            //return "<input class=\"form-control\" value='"+assento.getPassageiro().getNome()+"' type=\"hidden\" name=\"idAssento\" disabled />" ;
-            //return "<input class=\"form-control text-danger\" value='maico' type=\"text\" name=\"nome\" />";
-            //return assento.getPassageiro().getNome();
             return "<input class='form-control' value="+assento.getPassageiro().getNome()+" type='text' name='nome' disabled />";
         } else{
             return "<input class=\"form-control\" type=\"text\" name=\"nome\" />";
@@ -198,18 +178,21 @@ public class Html {
     public String printarOnibus(Bus bus){
 
         String ga="";
-
+        String dadosNulos =" -- ";
+        String iconReserved ="<i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i>";
+        String iconNotReserved ="<i class=\"fa fa-thumbs-down\" aria-hidden=\"true\"></i>";
         for (int i=0; i<bus.getAssentos().size(); i++){
             ga +="<tr>" +
                     "<form action='/reservar'>"+
                         "<td><img src=\"https://dummyimage.com/50x50/55595c/fff\" /> </td> " +
                         "<td>" +bus.getAssentos().get(i).getIdAssento()+"</td> " +
-                        "<td>"+bus.getAssentos().get(i).isReserved()+"</td> " +
+                        "<td class='text-center'>"+(bus.getAssentos().get(i).isReserved()==true? iconReserved : iconNotReserved)+"</td> " +
                         "<td>" +
                             inputStyle(bus.getAssentos().get(i)) +
                             "<input class=\"form-control\" value="+bus.getAssentos().get(i).getIdAssento()+" type=\"hidden\" name=\"idAssento\" />" +
                         "</td> " +
-                        "<td class=\"text-right\">500 pila </td> " +
+                        "<td class=\"text-right\">"+(bus.getAssentos().get(i).isReserved()==true ? bus.getAssentos().get(i).getPassageiro().getIpRequisicao() : dadosNulos )+"</td> " +
+                        "<td class=\"text-right\">"+(bus.getAssentos().get(i).isReserved()==true ? bus.getAssentos().get(i).getPassageiro().getDataAtual() : dadosNulos )+"</td> " +
                         "<td class=\"text-right \">"+
                                 buttonStyle(bus.getAssentos().get(i)) +
                         "</td>" +
