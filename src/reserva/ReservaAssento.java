@@ -48,8 +48,16 @@ public class ReservaAssento implements Runnable {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                try {
+                    Thread.sleep(20000);
+                    onibus.getAssentos().notifyAll();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
 
         }
+        System.out.println("                                                                  area critica sendo usada ....");
 
     }
 

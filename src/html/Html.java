@@ -116,13 +116,55 @@ public class Html {
             "    </div>\n" +
             "</footer>";
 
-    String bancos="";
+    public static final String LU="<div class=\"container mb-4\">\n" +
+            "    <div class=\"row\">\n" +
+            "        <div class=\"col-12\">\n" +
+            "            <div class=\"table-responsive\">\n" +
+            "                <table class=\"table table-striped\">\n" +
+            "                    <thead>\n" +
+            "                        <tr>\n" +
+            "                            <th scope=\"col\"> </th>\n" +
+            "                            <th scope=\"col\">Poltrona</th>\n" +
+            "                            <th scope=\"col\">Reservado</th>\n" +
+            "                            <th scope=\"col\" class=\"text-center\">Reservar para</th>\n" +
+            "                            <th scope=\"col\" class=\"text-right\">Valor(moeda local)</th>\n" +
+            "                            <th> </th>\n" +
+            "                        </tr>\n" +
+            "                    </thead>\n" +
+            "                    <tbody>\n";
 
+    public static final String RES="                        </tr>\n" +
+            "                        </tr>\n" +
+            "                        <tr>\n" +
+            "                            <td></td>\n" +
+            "                            <td></td>\n" +
+            "                            <td></td>\n" +
+            "                            <td></td>\n" +
+            "                            <td><strong>Total</strong></td>\n" +
+            "                            <td class=\"text-right\"><strong>346,90 pila</strong></td>\n" +
+            "                        </tr>\n" +
+            "                    </tbody>\n" +
+            "                </table>\n" +
+            "            </div>\n" +
+            "        </div>\n" +
+            "        <div class=\"col mb-2\">\n" +
+            "            <div class=\"row\">\n" +
+            "                <div class=\"col-sm-12  col-md-6\">\n" +
+            "                    <button class=\"btn btn-block btn-light\">Cancelar</button>\n" +
+            "                </div>\n" +
+            "                <div class=\"col-sm-12 col-md-6 text-right\">\n" +
+            "                    <button class=\"btn btn-lg btn-block btn-success text-uppercase\">Reservar</button>\n" +
+            "                </div>\n" +
+            "            </div>\n" +
+            "        </div>\n" +
+            "    </div>\n" +
+            "</div>";
 
     /**
-     * se o input na tela com nome do usuario caso reservado ou o input para o usuario digitar o nome
-      * @param assento
-     * @return
+     * de acordo com o estado do assento o input muda na tela, caso reservado exibe o nome do usuario que reservou, caso
+     * não reservado exibe o input que permite reservar o banco
+      * @param assento obj usado para determinar qual input aparece na tela
+     * @return input que deve aparecer na tela
      */
     public String inputStyle(Assento assento){
         if (assento.isReserved()){
@@ -135,6 +177,11 @@ public class Html {
         }
     }
 
+    /**
+     * desabilita o botão caso o assento ja estiver reservado
+     * @param assento
+     * @return
+     */
     public String buttonStyle(Assento assento){
         if (assento.isReserved()){
             return "<button type='submit' class='btn btn-sm btn-success' disabled ><i class='fa fa-check'></i></button>";
@@ -144,42 +191,22 @@ public class Html {
     }
 
     /**
-     * dados do onibux
+     * cria o html com os dados atuais do onibus
      * @param bus
      * @return
      */
     public String printarOnibus(Bus bus){
 
-         String lu ="<div class=\"container mb-4\">\n" +
-                "    <div class=\"row\">\n" +
-                "        <div class=\"col-12\">\n" +
-                "            <div class=\"table-responsive\">\n" +
-                "                <table class=\"table table-striped\">\n" +
-                "                    <thead>\n" +
-                "                        <tr>\n" +
-                "                            <th scope=\"col\"> </th>\n" +
-                "                            <th scope=\"col\">Poltrona</th>\n" +
-                "                            <th scope=\"col\">Reservado</th>\n" +
-                "                            <th scope=\"col\" class=\"text-center\">Reservar para</th>\n" +
-                "                            <th scope=\"col\" class=\"text-right\">Valor(moeda local)</th>\n" +
-                "                            <th> </th>\n" +
-                "                        </tr>\n" +
-                "                    </thead>\n" +
-                "                    <tbody>\n";
-
-         String ga="\n";
-
-         String input = "";
+        String ga="";
 
         for (int i=0; i<bus.getAssentos().size(); i++){
-            input = inputStyle(bus.getAssentos().get(i));
             ga +="<tr>" +
                     "<form action='/reservar'>"+
                         "<td><img src=\"https://dummyimage.com/50x50/55595c/fff\" /> </td> " +
                         "<td>" +bus.getAssentos().get(i).getIdAssento()+"</td> " +
                         "<td>"+bus.getAssentos().get(i).isReserved()+"</td> " +
                         "<td>" +
-                            input +
+                            inputStyle(bus.getAssentos().get(i)) +
                             "<input class=\"form-control\" value="+bus.getAssentos().get(i).getIdAssento()+" type=\"hidden\" name=\"idAssento\" />" +
                         "</td> " +
                         "<td class=\"text-right\">500 pila </td> " +
@@ -190,35 +217,7 @@ public class Html {
                  "</tr>\n";
         }
 
-
-        String res="                        </tr>\n" +
-                "                        </tr>\n" +
-                "                        <tr>\n" +
-                "                            <td></td>\n" +
-                "                            <td></td>\n" +
-                "                            <td></td>\n" +
-                "                            <td></td>\n" +
-                "                            <td><strong>Total</strong></td>\n" +
-                "                            <td class=\"text-right\"><strong>346,90 pila</strong></td>\n" +
-                "                        </tr>\n" +
-                "                    </tbody>\n" +
-                "                </table>\n" +
-                "            </div>\n" +
-                "        </div>\n" +
-                "        <div class=\"col mb-2\">\n" +
-                "            <div class=\"row\">\n" +
-                "                <div class=\"col-sm-12  col-md-6\">\n" +
-                "                    <button class=\"btn btn-block btn-light\">Cancelar</button>\n" +
-                "                </div>\n" +
-                "                <div class=\"col-sm-12 col-md-6 text-right\">\n" +
-                "                    <button class=\"btn btn-lg btn-block btn-success text-uppercase\">Reservar</button>\n" +
-                "                </div>\n" +
-                "            </div>\n" +
-                "        </div>\n" +
-                "    </div>\n" +
-                "</div>";
-        System.out.println(bancos);
-        String lugares= lu+ga+res;
+        String lugares= LU+ga+RES;
         return  CABECALHO +lugares+ RODA_PE;
     }
 

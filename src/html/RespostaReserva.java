@@ -1,33 +1,24 @@
 package html;
 
+import reserva.model.Bus;
+
 /**
  * Created by Glenio on 11/10/2018.
  */
 public class RespostaReserva {
 
-    String html="";
+    String mensagem="";
 
-    public String mensagem(String dadosForm){
-        return "<!DOCTYPE html> " +
-                    "<html lang=\"en\"> " +
-                        "<head>" +
-                            "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\">" +
-                            "<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>" +
-                            "<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>"+
-                            "<meta charset=\"UTF-8\">" +
-                                "<title>Title</title>" +
-                        "</head>" +
-                        "<body>" +
-                            "<br><br><br><br>"+
-                            "<div class=\"container\">\n" +
-                                "<div class=\"row\">"+
-                                    "<div class=\"alert alert-success\">" +
-                                        "<strong>Sucesso!</strong> Reservado com sucesso. "+
-                                    "</div>" +
-                                "</div>"+
-                            "</div>"+
-                        "</body>" +
-                    "</html>";
+    public String mensagem(Bus bus,int idBanco){
 
+        mensagem="<div class=\"container\">\n" +
+                    "<div class=\"row\">"+
+                        "<div class=\"alert alert-success\">" +
+                            "<strong>Sucesso!</strong> Reservado com sucesso. "+ bus.getAssentos().get(idBanco).getPassageiro().getNome() +
+                        "</div>" +
+                    "</div>"+
+                 "</div>";
+
+        return Html.CABECALHO + mensagem + Html.RODA_PE;
     }
 }

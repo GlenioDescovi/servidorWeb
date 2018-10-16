@@ -1,4 +1,6 @@
+import html.HomeReservas;
 import html.Html;
+import html.RespostaReserva;
 import reserva.AssentosReservados;
 import reserva.ReservaAssento;
 import reserva.model.Bus;
@@ -35,6 +37,7 @@ public class ThreadConexao implements Runnable {
             try {
                 //cria uma requisicao a partir do InputStream do cliente
                 RequisicaoHTTP requisicao = RequisicaoHTTP.lerRequisicao(socket.getInputStream());
+
                 //se a conexao esta marcada para se mantar viva entao seta keepalive e o timeout
                 if (requisicao.isManterViva()) {
                     socket.setKeepAlive(true);
@@ -44,12 +47,9 @@ public class ThreadConexao implements Runnable {
                     socket.setSoTimeout(300);
                 }
 
-                System.out.println(requisicao.getRecurso());
-
                 RespostaHTTP resposta;
 
                 if (requisicao.getRecurso().equals("/")) {
-
                     //retorna a pagina com os banco do bus que podem ser reservados
                     resposta = new RespostaHTTP(requisicao.getProtocolo(), 200, "OK");
                     resposta.setConteudoResposta(new Html().printarOnibus(bus).getBytes("UTF-8"));
@@ -58,15 +58,9 @@ public class ThreadConexao implements Runnable {
 
 
                     String[] dadosForm = requisicao.getRecurso().split("[?,=,&]");//split que deixa apenas o nome do input e os valores dele
-                    // recebe os dados (nome e o numero do banco) do usuario que vai reservar
                     Passageiro passageiro = new Passageiro();
                     passageiro.setNome(dadosForm[2]);
                     new Thread(new ReservaAssento(passageiro, Integer.parseInt(dadosForm[4]),bus)).start();
-
-
-                    //mandar para pagina de reservado com sucesso ou deu erro
-
-                    new Thread(new AssentosReservados(bus)).start();
 
                     resposta = new RespostaHTTP(requisicao.getProtocolo(), 200, "OK");
                     resposta.setConteudoResposta(new Html().printarOnibus(bus).getBytes("UTF-8"));
@@ -74,14 +68,15 @@ public class ThreadConexao implements Runnable {
                 else {
 
                     resposta = new RespostaHTTP(requisicao.getProtocolo(), 404, "Not Found");
-                    //retornar a classe de erro
+                    String erro="<p class='text-center texter-danger'>URL errada</p>";
+                    resposta.setConteudoResposta(erro.getBytes("UTF-8"));
                 }
 
                 //converte o formato para o GMT espeficicado pelo protocolo HTTP
                 String dataFormatada = Util.formatarDataGMT(new Date());
 
                 //cabeçalho padrão da resposta HTTP/1.1
-                resposta.setCabecalho("Location", "http://localhost:8000/");
+                resposta.setCabecalho("Location", "http://localhost:8080/");
                 resposta.setCabecalho("Date", dataFormatada);
                 resposta.setCabecalho("Server", "MeuServidor/1.0");
                 resposta.setCabecalho("Content-Type", "text/html");
@@ -92,6 +87,7 @@ public class ThreadConexao implements Runnable {
                 resposta.enviar();
 
             } catch (IOException ex) {
+
                 //quando o tempo limite terminar encerra a thread
                 if (ex instanceof SocketTimeoutException) {
                     try {

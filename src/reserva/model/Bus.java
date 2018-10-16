@@ -8,7 +8,7 @@ public class Bus {
 
     public Bus() {
         ArrayList<Assento> assentos = new ArrayList<Assento>();
-        Assento assento1 = new Assento(1,true, new Passageiro("Ana"));
+        Assento assento1 = new Assento(1);
         Assento assento2 = new Assento(2);
         Assento assento3 = new Assento(3);
         Assento assento4 = new Assento(4);

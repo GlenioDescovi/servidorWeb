@@ -25,24 +25,28 @@ public class RequisicaoHTTP {
     public static RequisicaoHTTP lerRequisicao(InputStream entrada) throws IOException {
         RequisicaoHTTP requisicao = new RequisicaoHTTP();
         BufferedReader buffer = new BufferedReader(new InputStreamReader(entrada));
-        System.out.println("Requisição: ");
         /* Lê a primeira linha
          contem as informaçoes da requisição
          */
         String linhaRequisicao = buffer.readLine();
-        System.out.println(linhaRequisicao);
+        System.out.println("linha:"+linhaRequisicao);
         //quebra a string pelo espaço em branco
         String[] dadosReq = linhaRequisicao.split(" ");
+
         //pega o metodo
         requisicao.setMetodo(dadosReq[0]);
+
         //paga o caminho do arquivo
         requisicao.setRecurso(dadosReq[1]);
+
         //pega o protocolo
         requisicao.setProtocolo(dadosReq[2]);
+
         String dadosHeader = buffer.readLine();
+
         //Enquanto a linha nao for nula e nao for vazia
         while (dadosHeader != null && !dadosHeader.isEmpty()) {
-            System.out.println(dadosHeader);
+            //System.out.println(dadosHeader);
             String[] linhaCabecalho = dadosHeader.split(":");
             requisicao.setCabecalho(linhaCabecalho[0], linhaCabecalho[1].trim().split(","));
             dadosHeader = buffer.readLine();
@@ -73,10 +77,6 @@ public class RequisicaoHTTP {
 
     public void setProtocolo(String protocolo) {
         this.protocolo = protocolo;
-    }
-
-    public void setCabecalhos(Map header) {
-        this.cabecalhos = header;
     }
 
     public boolean isManterViva() {
