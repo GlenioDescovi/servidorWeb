@@ -31,12 +31,8 @@ public class ReservaAssento implements Runnable {
                     for (Assento assento: onibus.getAssentos()){
                         if (assento.getIdAssento()==idAssento){
                             assento.setReserved(true);
-                            try {
-                                passageiro.setIpRequisicao(Inet4Address.getLocalHost().getHostAddress());
-                                passageiro.setDataAtual(Calendar.getInstance().getTime());
-                            } catch (UnknownHostException e) {
-                                e.printStackTrace();
-                            }
+
+                            passageiro.setDataAtual(Calendar.getInstance().getTime());
                             assento.setPassageiro(passageiro);
                             System.out.println("reservado para:"+passageiro.getNome() );
                         }

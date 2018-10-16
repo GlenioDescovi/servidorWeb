@@ -61,6 +61,7 @@ public class ThreadConexao implements Runnable {
                     String[] dadosForm = requisicao.getRecurso().split("[?,=,&]");//split que deixa apenas o nome do input e os valores dele
                     Passageiro passageiro = new Passageiro();
                     passageiro.setNome(dadosForm[2]);
+                    passageiro.setIpRequisicao(socket.getInetAddress().toString());
                     Assento assento = new Assento(Integer.parseInt(dadosForm[4]));
                     new ReservaAssento(passageiro, Integer.parseInt(dadosForm[4]),bus).run();
 

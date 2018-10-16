@@ -31,7 +31,7 @@ public class RequisicaoHTTP {
          contem as informaçoes da requisição
          */
         String linhaRequisicao = buffer.readLine();
-        System.out.println("linha:"+linhaRequisicao);
+        System.out.println("linha: "+linhaRequisicao);
         //quebra a string pelo espaço em branco
         String[] dadosReq = linhaRequisicao.split(" ");
 
