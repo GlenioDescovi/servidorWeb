@@ -34,6 +34,7 @@ public class ThreadConexao implements Runnable {
     public void run() {
         conectado = true;
         while (conectado) {
+            System.out.println("conectad o . . . ");
             try {
                 //cria uma requisicao a partir do InputStream do cliente
                 RequisicaoHTTP requisicao = RequisicaoHTTP.lerRequisicao(socket.getInputStream());

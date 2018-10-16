@@ -1,3 +1,4 @@
+import reserva.AssentosReservados;
 import reserva.model.Bus;
 
 import java.io.IOException;
@@ -13,8 +14,9 @@ public class Servidor {
          já aguardando conexões
          */
         ServerSocket servidor = new ServerSocket(8080);
-        ExecutorService pool = Executors.newFixedThreadPool(20);
+        ExecutorService pool = Executors.newFixedThreadPool(40);
         Bus bus = new Bus();
+        new Thread(new AssentosReservados(bus));
 
         while (true) {
             //cria uma nova thread para cada nova solicitacao de conexao
