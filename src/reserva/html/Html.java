@@ -102,7 +102,7 @@ public class Html {
             "                <ul class=\"list-unstyled\">\n" +
             "                    <li><i class=\"fa fa-home mr-2\"></i><a href=\"https://www.facebook.com/rerumTI/\">Rerum Web</a></li>\n" +
             "                    <li><i class=\"fa fa-envelope mr-2\"> maicocamargo08@hotmail.com</i></li>\n" +
-            "                    <li><i class=\"fa fa-envelope mr-2\"> -----</i></li>\n" +
+            "                    <li><i class=\"fa fa-envelope mr-2\"> glenio.descovi@gmail.com</i></li>\n" +
             "                    <li><i class=\"fa fa-github mr-2\"></i><a href=\"https://github.com/MaicoCamargo\">Maico Camargo</a></li>\n" +
             "                    <li><i class=\"fa fa-github mr-2\"></i><a href=\"https://github.com/GlenioDescovi\">Glenio Descovi</a></li>\n" +
             "                    \n" +

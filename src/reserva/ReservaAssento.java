@@ -21,9 +21,9 @@ public class ReservaAssento implements Runnable {
         // verificar se o assento esta vago
             synchronized (onibus.getAssentos()){
 
-                System.out.println(passageiro.getNome() +" "+ idAssento);
+
                 if (verificaAssento(onibus,idAssento)){
-                    System.out.println("   CONSEGUIU ...");
+                    System.out.println(passageiro.getNome() +" "+ idAssento +" CONSEGUIU ...");
 
                     for (Assento assento: onibus.getAssentos()){
                         if (assento.getIdAssento()==idAssento){
@@ -39,7 +39,7 @@ public class ReservaAssento implements Runnable {
                 }else{
                     System.out.println("   NAO CONSEGUIU ");
                 }
-                onibus.getAssentos().notifyAll();
+                //onibus.getAssentos().notifyAll();
         }
 
     }
