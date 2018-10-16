@@ -142,13 +142,21 @@ public class Html {
          String ga="\n";
 
         for (int i=0; i<bus.getAssentos().size(); i++){
-            ga += "" +
-                    "                                      <tr><td><img src=\"https://dummyimage.com/50x50/55595c/fff\" /> </td> " +
-                    "                                        <td>" +bus.getAssentos().get(i).getIdAssento()+"</td> " +
-                    "                                        <td>"+bus.getAssentos().get(i).isReserved()+"</td> " +
-                    "                                       <td><input class=\"form-control\" type=\"text\" name=\"nome\" /></td> " +
-                    "                                       <td class=\"text-right\">500 pila </td> " +
-                    "                                         <td class=\"text-right \"><button class=\"btn btn-sm btn-success\"><i class=\"fa fa-check\"></i> </button> </td></tr>\n";
+            ga +="<tr>" +
+                    "<form action='/reservar'>"+
+                        "<td><img src=\"https://dummyimage.com/50x50/55595c/fff\" /> </td> " +
+                        "<td>" +bus.getAssentos().get(i).getIdAssento()+"</td> " +
+                        "<td>"+bus.getAssentos().get(i).isReserved()+"</td> " +
+                        "<td>" +
+                            "<input class=\"form-control\" type=\"text\" name=\"nome\" />" +
+                            "<input class=\"form-control\" value="+bus.getAssentos().get(i).getIdAssento()+" type=\"hidden\" name=\"idAssento\" />" +
+                        "</td> " +
+                        "<td class=\"text-right\">500 pila </td> " +
+                        "<td class=\"text-right \">"+
+                                "<button type='submit' class=\"btn btn-sm btn-success\"><i class=\"fa fa-check\"></i></button>"+
+                        "</td>" +
+                    "</form>"+
+                 "</tr>\n";
         }
 
 

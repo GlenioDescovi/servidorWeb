@@ -12,7 +12,7 @@ public class Servidor {
         /* cria um socket "servidor" associado a porta 8000
          já aguardando conexões
          */
-        ServerSocket servidor = new ServerSocket(80);
+        ServerSocket servidor = new ServerSocket(8000);
         ExecutorService pool = Executors.newFixedThreadPool(20);
         Bus bus = new Bus();
 

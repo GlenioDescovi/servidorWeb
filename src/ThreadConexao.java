@@ -1,5 +1,8 @@
 import html.Html;
+import reserva.AssentosReservados;
+import reserva.ReservaAssento;
 import reserva.model.Bus;
+import reserva.model.Passageiro;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -48,28 +51,22 @@ public class ThreadConexao implements Runnable {
                 if (requisicao.getRecurso().equals("/")) {
                     //retorna a pagina com os banco do bus que podem ser reservados
                     resposta = new RespostaHTTP(requisicao.getProtocolo(), 200, "OK");
-                    resposta.setConteudoResposta(new Html().printarOnibus(bus).getBytes("UTF-8"));
 
                 } else if(requisicao.getRecurso().contains("/login")){
 
                     resposta = new RespostaHTTP(requisicao.getProtocolo(), 200, "OK");
                 } else if (requisicao.getRecurso().contains("/reservar")) {
+
+
                     String[] dadosForm = requisicao.getRecurso().split("[?,=,&]");//split que deixa apenas o nome do input e os valores dele
                     // recebe os dados (nome e o numero do banco) do usuario que vai reservar
-
-
+                    Passageiro passageiro = new Passageiro();
+                    passageiro.setNome(dadosForm[2]);
+                    new Thread(new ReservaAssento(passageiro, Integer.parseInt(dadosForm[4]),bus)).start();
                     resposta = new RespostaHTTP(requisicao.getProtocolo(), 200, "OK");
-                } else if (requisicao.getRecurso().contains("/acessar")) {
-                    String[] dadosForm = requisicao.getRecurso().split("[?,=,&]");//split que deixa apenas o nome do input e os valores dele
-                    // recebe os dados (nome e o numero do banco) do usuario que vai reservar
+                    new Thread(new AssentosReservados(bus)).start();
+                    resposta.setConteudoResposta(new Html().printarOnibus(bus).getBytes("UTF-8"));
 
-
-                    resposta = new RespostaHTTP(requisicao.getProtocolo(), 200, "OK");
-                }
-                else if (requisicao.getRecurso().contains("/reservados")) {
-                    // vai retornar os bancos do onibus
-
-                    resposta = new RespostaHTTP(requisicao.getProtocolo(), 200, "OK");
                 }
                 else {
 
