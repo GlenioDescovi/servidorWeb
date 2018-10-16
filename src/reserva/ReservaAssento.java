@@ -4,8 +4,6 @@ import reserva.model.Assento;
 import reserva.model.Bus;
 import reserva.model.Passageiro;
 
-import java.net.Inet4Address;
-import java.net.UnknownHostException;
 import java.util.Calendar;
 
 public class ReservaAssento implements Runnable {
@@ -13,7 +11,6 @@ public class ReservaAssento implements Runnable {
     private Passageiro passageiro;
     private int idAssento;
     private Bus onibus;
-    //private String mensagem ="";
     public ReservaAssento(Passageiro passageiro,int idAssento, Bus onibus){
         this.passageiro = passageiro;
         this.idAssento = idAssento;
@@ -42,12 +39,7 @@ public class ReservaAssento implements Runnable {
                 }else{
                     System.out.println("   NAO CONSEGUIU ");
                 }
-                try {
-                    System.out.println("assentos:"+onibus.getAssentos());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                    onibus.getAssentos().notifyAll();
+                onibus.getAssentos().notifyAll();
         }
 
     }

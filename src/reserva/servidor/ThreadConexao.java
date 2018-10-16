@@ -3,6 +3,7 @@ package reserva.servidor;
 import reserva.html.Html;
 import reserva.ReservaAssento;
 import reserva.html.RespostaReserva;
+import reserva.log.Produtor;
 import reserva.model.Assento;
 import reserva.model.Bus;
 import reserva.model.Passageiro;
