@@ -119,7 +119,35 @@ public class Html {
     String bancos="";
 
 
+    /**
+     * se o input na tela com nome do usuario caso reservado ou o input para o usuario digitar o nome
+      * @param assento
+     * @return
+     */
+    public String inputStyle(Assento assento){
+        if (assento.isReserved()){
+            //return "<input class=\"form-control\" value='"+assento.getPassageiro().getNome()+"' type=\"hidden\" name=\"idAssento\" disabled />" ;
+            //return "<input class=\"form-control text-danger\" value='maico' type=\"text\" name=\"nome\" />";
+            //return assento.getPassageiro().getNome();
+            return "<input class='form-control' value="+assento.getPassageiro().getNome()+" type='text' name='nome' disabled />";
+        } else{
+            return "<input class=\"form-control\" type=\"text\" name=\"nome\" />";
+        }
+    }
 
+    public String buttonStyle(Assento assento){
+        if (assento.isReserved()){
+            return "<button type='submit' class='btn btn-sm btn-success' disabled ><i class='fa fa-check'></i></button>";
+        }else{
+            return "<button type='submit' class='btn btn-sm btn-primary'><i class='fa fa-plus'></i></button>";
+        }
+    }
+
+    /**
+     * dados do onibux
+     * @param bus
+     * @return
+     */
     public String printarOnibus(Bus bus){
 
          String lu ="<div class=\"container mb-4\">\n" +
@@ -141,19 +169,22 @@ public class Html {
 
          String ga="\n";
 
+         String input = "";
+
         for (int i=0; i<bus.getAssentos().size(); i++){
+            input = inputStyle(bus.getAssentos().get(i));
             ga +="<tr>" +
                     "<form action='/reservar'>"+
                         "<td><img src=\"https://dummyimage.com/50x50/55595c/fff\" /> </td> " +
                         "<td>" +bus.getAssentos().get(i).getIdAssento()+"</td> " +
                         "<td>"+bus.getAssentos().get(i).isReserved()+"</td> " +
                         "<td>" +
-                            "<input class=\"form-control\" type=\"text\" name=\"nome\" />" +
+                            input +
                             "<input class=\"form-control\" value="+bus.getAssentos().get(i).getIdAssento()+" type=\"hidden\" name=\"idAssento\" />" +
                         "</td> " +
                         "<td class=\"text-right\">500 pila </td> " +
                         "<td class=\"text-right \">"+
-                                "<button type='submit' class=\"btn btn-sm btn-success\"><i class=\"fa fa-check\"></i></button>"+
+                                buttonStyle(bus.getAssentos().get(i)) +
                         "</td>" +
                     "</form>"+
                  "</tr>\n";

@@ -47,15 +47,14 @@ public class ThreadConexao implements Runnable {
                 System.out.println(requisicao.getRecurso());
 
                 RespostaHTTP resposta;
-                //se o caminho foi igual a / entao deve pegar o index
+
                 if (requisicao.getRecurso().equals("/")) {
+
                     //retorna a pagina com os banco do bus que podem ser reservados
                     resposta = new RespostaHTTP(requisicao.getProtocolo(), 200, "OK");
+                    resposta.setConteudoResposta(new Html().printarOnibus(bus).getBytes("UTF-8"));
 
-                } else if(requisicao.getRecurso().contains("/login")){
-
-                    resposta = new RespostaHTTP(requisicao.getProtocolo(), 200, "OK");
-                } else if (requisicao.getRecurso().contains("/reservar")) {
+                }else if (requisicao.getRecurso().contains("/reservar")) {
 
 
                     String[] dadosForm = requisicao.getRecurso().split("[?,=,&]");//split que deixa apenas o nome do input e os valores dele
@@ -63,10 +62,14 @@ public class ThreadConexao implements Runnable {
                     Passageiro passageiro = new Passageiro();
                     passageiro.setNome(dadosForm[2]);
                     new Thread(new ReservaAssento(passageiro, Integer.parseInt(dadosForm[4]),bus)).start();
-                    resposta = new RespostaHTTP(requisicao.getProtocolo(), 200, "OK");
-                    new Thread(new AssentosReservados(bus)).start();
-                    resposta.setConteudoResposta(new Html().printarOnibus(bus).getBytes("UTF-8"));
 
+
+                    //mandar para pagina de reservado com sucesso ou deu erro
+
+                    new Thread(new AssentosReservados(bus)).start();
+
+                    resposta = new RespostaHTTP(requisicao.getProtocolo(), 200, "OK");
+                    resposta.setConteudoResposta(new Html().printarOnibus(bus).getBytes("UTF-8"));
                 }
                 else {
 

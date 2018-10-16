@@ -22,7 +22,7 @@ public class AssentosReservados implements Runnable {
             }
             try {
                 System.out.println("      estou descansando ... ");
-                Thread.sleep(8000);
+                Thread.sleep(10000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

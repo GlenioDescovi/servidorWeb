@@ -22,7 +22,7 @@ public class RespostaReserva {
                             "<div class=\"container\">\n" +
                                 "<div class=\"row\">"+
                                     "<div class=\"alert alert-success\">" +
-                                        "<strong>Sucesso!</strong> Reservado com sucesso. " + dadosForm +
+                                        "<strong>Sucesso!</strong> Reservado com sucesso. "+
                                     "</div>" +
                                 "</div>"+
                             "</div>"+
