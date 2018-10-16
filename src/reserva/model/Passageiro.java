@@ -5,6 +5,7 @@ import java.util.Date;
 public class Passageiro {
 
     private String nome;
+    private int idPassageiro=0;
     private String ipRequisicao;
     private Date dataAtual;
 
@@ -12,6 +13,7 @@ public class Passageiro {
     public String toString() {
         return "Passageiro{" +
                 "nome='" + nome + '\'' +
+                ", idPassageiro=" + idPassageiro +
                 ", ipRequisicao='" + ipRequisicao + '\'' +
                 ", dataAtual=" + dataAtual +
                 '}';
@@ -19,6 +21,7 @@ public class Passageiro {
 
     public Passageiro(String nome) {
         this.nome = nome;
+        idPassageiro+=1;
     }
 
     public Passageiro(){}
@@ -45,5 +48,12 @@ public class Passageiro {
 
     public void setDataAtual(Date dataAtual) {
         this.dataAtual = dataAtual;
+    }
+    public int getIdPassageiro() {
+        return idPassageiro;
+    }
+
+    public void setIdPassageiro(int idPassageiro) {
+        this.idPassageiro = idPassageiro;
     }
 }

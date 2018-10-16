@@ -2,6 +2,8 @@ package reserva.servidor;
 
 import reserva.html.Html;
 import reserva.ReservaAssento;
+import reserva.html.RespostaReserva;
+import reserva.model.Assento;
 import reserva.model.Bus;
 import reserva.model.Passageiro;
 
@@ -60,10 +62,13 @@ public class ThreadConexao implements Runnable {
                     String[] dadosForm = requisicao.getRecurso().split("[?,=,&]");//split que deixa apenas o nome do input e os valores dele
                     Passageiro passageiro = new Passageiro();
                     passageiro.setNome(dadosForm[2]);
+                    Assento assento = new Assento(Integer.parseInt(dadosForm[4]));
                     new ReservaAssento(passageiro, Integer.parseInt(dadosForm[4]),bus).run();
 
+
                     resposta = new RespostaHTTP(requisicao.getProtocolo(), 200, "OK");
-                    resposta.setConteudoResposta(new Html().printarOnibus(bus).getBytes("UTF-8"));
+                    String htmlRetorno = new RespostaReserva().mensagem(bus.getAssentos(),assento.getIdAssento()-1);
+                    resposta.setConteudoResposta(htmlRetorno.getBytes("UTF-8"));
                 }
                 else {
 
