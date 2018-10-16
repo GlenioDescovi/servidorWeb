@@ -1,4 +1,4 @@
-package html;
+package reserva.html;
 
 /**
  * Created by Glenio on 11/10/2018.
@@ -7,8 +7,8 @@ public class HomeReservas {
 
     public String homeReservas(String nome){
 
-        return "<!DOCTYPE html> " +
-                "<html lang=\"en\"> " +
+        return "<!DOCTYPE reserva.html> " +
+                "<reserva.html lang=\"en\"> " +
                     "<head>" +
                         "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\">" +
                         "<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>" +
@@ -42,6 +42,6 @@ public class HomeReservas {
                             "</div>"+
                         "</div>"+
                     "</body>" +
-                "</html>";
+                "</reserva.html>";
     }
 }

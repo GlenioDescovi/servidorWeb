@@ -1,3 +1,5 @@
+package reserva.servidor;
+
 import reserva.AssentosReservados;
 import reserva.model.Bus;
 

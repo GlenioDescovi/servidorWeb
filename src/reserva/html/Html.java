@@ -1,4 +1,4 @@
-package html;
+package reserva.html;
 
 import reserva.model.Assento;
 import reserva.model.Bus;
@@ -74,7 +74,7 @@ public class Html {
             "<link href=\"https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css\" rel=\"stylesheet\" integrity=\"sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN\" crossorigin=\"anonymous\">\n" +
             "<nav class=\"navbar navbar-expand-md navbar-dark bg-dark\">\n" +
             "    <div class=\"container\">\n" +
-            "        <a class=\"navbar-brand\" href=\"index.html\">Reserva Bus.java</a>\n" +
+            "        <a class=\"navbar-brand\" href=\"index.reserva.html\">Reserva Bus.java</a>\n" +
             "    \n" +
             "    </div>\n" +
             "</nav>\n" +
@@ -92,7 +92,7 @@ public class Html {
             "                <h5>About</h5>\n" +
             "                <hr class=\"bg-white mb-2 mt-0 d-inline-block mx-auto w-25\">\n" +
             "                <p class=\"mb-0\">\n" +
-            "                    Sistema/Servidor de reserva de poltronas de onibus desenvolvido em java (<i class=\"fa fa-heart\"></i>) \n" +
+            "                    Sistema/reserva.servidor.Servidor de reserva de poltronas de onibus desenvolvido em java (<i class=\"fa fa-heart\"></i>) \n" +
             "                </p>\n" +
             "            </div>\n" +
             "\n" +
@@ -191,7 +191,7 @@ public class Html {
     }
 
     /**
-     * cria o html com os dados atuais do onibus
+     * cria o reserva.html com os dados atuais do onibus
      * @param bus
      * @return
      */

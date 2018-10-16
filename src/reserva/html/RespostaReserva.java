@@ -1,4 +1,4 @@
-package html;
+package reserva.html;
 
 import reserva.model.Bus;
 

@@ -13,7 +13,7 @@ public class ReservaAssento implements Runnable {
     private Passageiro passageiro;
     private int idAssento;
     private Bus onibus;
-
+    //private String mensagem ="";
     public ReservaAssento(Passageiro passageiro,int idAssento, Bus onibus){
         this.passageiro = passageiro;
         this.idAssento = idAssento;
@@ -27,6 +27,7 @@ public class ReservaAssento implements Runnable {
                 System.out.println(passageiro.getNome() +" "+ idAssento);
                 if (verificaAssento(onibus,idAssento)){
                     System.out.println("   CONSEGUIU ...");
+
                     for (Assento assento: onibus.getAssentos()){
                         if (assento.getIdAssento()==idAssento){
                             assento.setReserved(true);
@@ -40,6 +41,8 @@ public class ReservaAssento implements Runnable {
                             System.out.println("reservado para:"+passageiro.getNome() );
                         }
                     }
+                    /*mensagem ="reservado para: "+passageiro.getNome() +" Poltrona: "+idAssento +"Ip: "+passageiro.getIpRequisicao() + "\n " +
+                            "data: "+passageiro.getDataAtual();*/
                 }else{
                     System.out.println("   NAO CONSEGUIU ");
                 }
@@ -50,7 +53,6 @@ public class ReservaAssento implements Runnable {
                 }
                     onibus.getAssentos().notifyAll();
         }
-        System.out.println("                                                                  area critica sendo usada ....");
 
     }
 

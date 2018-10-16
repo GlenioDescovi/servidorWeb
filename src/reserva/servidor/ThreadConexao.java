@@ -1,7 +1,6 @@
-import html.HomeReservas;
-import html.Html;
-import html.RespostaReserva;
-import reserva.AssentosReservados;
+package reserva.servidor;
+
+import reserva.html.Html;
 import reserva.ReservaAssento;
 import reserva.model.Bus;
 import reserva.model.Passageiro;
@@ -12,6 +11,7 @@ import java.net.SocketTimeoutException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import reserva.Utils;
 
 /**
  * Created by Glenio on 11/10/2018.
@@ -34,7 +34,6 @@ public class ThreadConexao implements Runnable {
     public void run() {
         conectado = true;
         while (conectado) {
-            System.out.println("conectad o . . . ");
             try {
                 //cria uma requisicao a partir do InputStream do cliente
                 RequisicaoHTTP requisicao = RequisicaoHTTP.lerRequisicao(socket.getInputStream());
@@ -61,7 +60,7 @@ public class ThreadConexao implements Runnable {
                     String[] dadosForm = requisicao.getRecurso().split("[?,=,&]");//split que deixa apenas o nome do input e os valores dele
                     Passageiro passageiro = new Passageiro();
                     passageiro.setNome(dadosForm[2]);
-                    new Thread(new ReservaAssento(passageiro, Integer.parseInt(dadosForm[4]),bus)).start();
+                    new ReservaAssento(passageiro, Integer.parseInt(dadosForm[4]),bus).run();
 
                     resposta = new RespostaHTTP(requisicao.getProtocolo(), 200, "OK");
                     resposta.setConteudoResposta(new Html().printarOnibus(bus).getBytes("UTF-8"));
@@ -74,7 +73,7 @@ public class ThreadConexao implements Runnable {
                 }
 
                 //converte o formato para o GMT espeficicado pelo protocolo HTTP
-                String dataFormatada = Util.formatarDataGMT(new Date());
+                String dataFormatada = Utils.formatarDataGMT(new Date());
 
                 //cabeçalho padrão da resposta HTTP/1.1
                 resposta.setCabecalho("Location", "http://localhost:8080/");
