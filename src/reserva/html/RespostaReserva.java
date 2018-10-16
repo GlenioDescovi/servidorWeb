@@ -10,15 +10,39 @@ public class RespostaReserva {
 
     String mensagem="";
 
-    public String mensagem(ArrayList<Assento> assentos , int idBanco){
+    public String mensagem(ArrayList<Assento> assentos , int idBanco, String nomeUsuario){
 
-        mensagem="<div class=\"container\">\n" +
-                    "<div class=\"row\">"+
-                        "<div class=\"alert alert-success\">" +
-                            "<strong>Sucesso!</strong> Reservado com sucesso. "+ assentos.get(idBanco) +
-                        "</div>" +
-                    "</div>"+
-                 "</div>";
+        if (assentos.get(idBanco).getPassageiro().getNome().equals(nomeUsuario)){
+            mensagem="<div class=\"container\">\n" +
+                        "<div class=\"row\">"+
+                            "<div class=\"col-md-12\">"+
+                                "<div class=\"alert alert-success text-center\">" +
+                                    "<strong>Reservado com sucesso.</strong> "+
+                                    "<h4>Reservado para: <b class='text-info'>"+assentos.get(idBanco).getPassageiro().getNome()+"</b></h4>"+
+                                    "<h4>Ip: <b class='text-info'>"+assentos.get(idBanco).getPassageiro().getIpRequisicao()+"</b></h4> "+
+                                    "<h4>Hora/data Reserva: <b class='text-info'>"+assentos.get(idBanco).getPassageiro().getDataAtual()+"</b></h4>"+
+
+                                    "<form action='/poltronas'>"+
+                                        "<button class='alert alert-outline-success' type='submit'>voltar para home</button>"
+                                    +"</form>"+
+                            "</div>"+
+                        "</div>"+
+                    "</div>";
+        }else{
+            mensagem="<div class=\"container\">\n" +
+                        "<div class=\"row\">"+
+                            "<div class=\"col-md-12\">"+
+                                "<div class=\"alert alert-warning text-center\">" +
+                                    "<strong>Esta poltrona ja esta reservada, tente outra poltrona.</strong> "+
+
+                                    "<form action='/poltronas'>"+
+                                        "<button class='alert alert-warning' type='submit'>voltar para home</button>"
+                                    +"</form>"+
+                            "</div>"+
+                        "</div>"+
+                    "</div>";
+        }
+
 
         return Html.CABECALHO + mensagem + Html.RODA_PE;
     }

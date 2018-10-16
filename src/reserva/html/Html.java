@@ -80,7 +80,7 @@ public class Html {
             "</nav>\n" +
             "<section class=\"jumbotron text-center\">\n" +
             "    <div class=\"container\">\n" +
-            "        <h1 class=\"jumbotron-heading\">ESCOLHA SUA POLTRONA --- \"</h1>\n" +
+            "        <h1 class=\"jumbotron-heading\">ESCOLHA SUA POLTRONA ---</h1>\n" +
             "     </div>\n" +
             "</section>";
 

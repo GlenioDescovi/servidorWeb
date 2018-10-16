@@ -24,7 +24,6 @@ public class ThreadConexao implements Runnable {
 
     private final Socket socket;
     private boolean conectado;
-    private String nomeUsuario;
     private Bus bus;
 
     public ThreadConexao(Socket socket, Bus bus) {
@@ -67,8 +66,14 @@ public class ThreadConexao implements Runnable {
 
 
                     resposta = new RespostaHTTP(requisicao.getProtocolo(), 200, "OK");
-                    String htmlRetorno = new RespostaReserva().mensagem(bus.getAssentos(),assento.getIdAssento()-1);
+                    String htmlRetorno = new RespostaReserva().mensagem(bus.getAssentos(),assento.getIdAssento()-1,passageiro.getNome());
                     resposta.setConteudoResposta(htmlRetorno.getBytes("UTF-8"));
+                }
+                else if (requisicao.getRecurso().equals("/poltronas?")){
+
+                    resposta = new RespostaHTTP(requisicao.getProtocolo(), 200, "OK");
+                    resposta.setConteudoResposta(new Html().printarOnibus(bus).getBytes("UTF-8"));
+
                 }
                 else {
 

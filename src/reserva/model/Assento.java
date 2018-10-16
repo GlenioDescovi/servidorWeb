@@ -14,13 +14,11 @@ public class Assento {
     private int idAssento;//numero do assento
     private boolean IsReserved;
     private Passageiro passageiro;
-    private int idPassageiro;
 
     public Assento(int idAssento, boolean isReserved, Passageiro passageiro) {
         this.idAssento = idAssento;
         IsReserved = isReserved;
         this.passageiro = passageiro;
-        idPassageiro = passageiro.getIdPassageiro();
     }
 
     public Assento(int idAssento) {
