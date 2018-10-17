@@ -68,7 +68,7 @@ public class Log {
 
                     bufferedWriter.write("\n" + ip);
                     bufferedWriter.write("\nDATA: "+ new Date());
-                    bufferedWriter.write("\n ------------------------");
+                    bufferedWriter.write("\n------------------------");
                     bufferedReader.close();
                     bufferedWriter.close();
 
