@@ -1,7 +1,9 @@
 package reserva.html;
 
+import reserva.log.Log;
 import reserva.model.Assento;
 import java.util.ArrayList;
+
 
 /**
  * Created by Glenio on 11/10/2018.
@@ -11,8 +13,15 @@ public class RespostaReserva {
     String mensagem="";
 
     public String mensagem(ArrayList<Assento> assentos , int idBanco, String nomeUsuario){
+        String log="";
 
         if (assentos.get(idBanco).getPassageiro().getNome().equals(nomeUsuario)){
+
+            log= "NOME: " + assentos.get(idBanco).getPassageiro().getNome()+ "\n"
+                    + "IP: " + assentos.get(idBanco).getPassageiro().getIpRequisicao() +
+                        "\n" + "STATUS: CONSEGUIU RESERVAR";
+            Log.addLog(log);
+
             mensagem="<div class=\"container\">\n" +
                         "<div class=\"row\">"+
                             "<div class=\"col-md-12\">"+
@@ -28,7 +37,14 @@ public class RespostaReserva {
                             "</div>"+
                         "</div>"+
                     "</div>";
+
         }else{
+
+            log= "NOME: " + assentos.get(idBanco).getPassageiro().getNome()+ "\n"
+                    + "IP: " + assentos.get(idBanco).getPassageiro().getIpRequisicao() +
+                    "\n" + "STATUS: NÃO CONSEGUIU RESERVAR";
+            Log.addLog(log);
+
             mensagem="<div class=\"container\">\n" +
                         "<div class=\"row\">"+
                             "<div class=\"col-md-12\">"+
@@ -42,7 +58,6 @@ public class RespostaReserva {
                         "</div>"+
                     "</div>";
         }
-
 
         return Html.CABECALHO + mensagem + Html.RODA_PE;
     }

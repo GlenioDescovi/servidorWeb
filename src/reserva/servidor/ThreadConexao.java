@@ -3,6 +3,7 @@ package reserva.servidor;
 import reserva.html.Html;
 import reserva.ReservaAssento;
 import reserva.html.RespostaReserva;
+import reserva.log.Log;
 import reserva.model.Assento;
 import reserva.model.Bus;
 import reserva.model.Passageiro;
@@ -39,7 +40,7 @@ public class ThreadConexao implements Runnable {
                 //cria uma requisicao a partir do InputStream do cliente
                 RequisicaoHTTP requisicao = RequisicaoHTTP.lerRequisicao(socket.getInputStream());
 
-                //se a conexao esta marcada para se mantar viva entao seta keepalive e o timeout
+                //se a conexao esta marcada para se manter viva entao seta keepalive e o timeout
                 if (requisicao.isManterViva()) {
                     socket.setKeepAlive(true);
                     socket.setSoTimeout(requisicao.getTempoLimite());

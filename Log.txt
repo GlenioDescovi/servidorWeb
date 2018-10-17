@@ -1,0 +1,25 @@
+
+
+NOME: Glenio
+IP: /0:0:0:0:0:0:0:1
+STATUS: CONSEGUIU RESERVAR
+ Data: Wed Oct 17 20:30:26 BRT 2018
+ ------------------------
+
+NOME: BOMBO
+IP: /0:0:0:0:0:0:0:1
+STATUS: CONSEGUIU RESERVAR
+ Data: Wed Oct 17 20:30:46 BRT 2018
+ ------------------------
+
+NOME: BOMBO
+IP: /0:0:0:0:0:0:0:1
+STATUS: NÃO CONSEGUIU RESERVAR
+ Data: Wed Oct 17 20:30:59 BRT 2018
+ ------------------------
+
+NOME: maico
+IP: /0:0:0:0:0:0:0:1
+STATUS: CONSEGUIU RESERVAR
+DATA: Wed Oct 17 20:32:43 BRT 2018
+ ------------------------

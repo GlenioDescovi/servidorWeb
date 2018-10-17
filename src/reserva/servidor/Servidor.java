@@ -1,6 +1,7 @@
 package reserva.servidor;
 
 import reserva.AssentosReservados;
+import reserva.log.Log;
 import reserva.model.Bus;
 
 import java.io.IOException;
@@ -18,6 +19,10 @@ public class Servidor {
         ServerSocket servidor = new ServerSocket(8080);
         ExecutorService pool = Executors.newFixedThreadPool(40);
         Bus bus = new Bus();
+
+        //nova thread para o consumidor ficar observando o produtor
+        //poll de thread fundiona do mesmo jeito que o pull de conexoes, inserido no java 5
+        pool.execute(new Log.Escreve());
 
         while (true) {
             //cria uma nova thread para cada nova solicitacao de conexao
