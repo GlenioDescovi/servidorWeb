@@ -13,7 +13,7 @@ public class AssentosReservados implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("\n    assentos reservados...");
+        System.out.println("\n assentos reservados...");
         while (true){
                 for(Assento assento : bus.getAssentos()){
                     boolean isPassageiro = assento.getPassageiro()==null ?true: false;

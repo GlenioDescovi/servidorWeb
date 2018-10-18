@@ -1,16 +1,22 @@
 package reserva;
 
+import reserva.log.Log;
 import reserva.model.Assento;
 import reserva.model.Bus;
 import reserva.model.Passageiro;
 
 import java.util.Calendar;
 
+/**
+ * Classe que tem a thread que tenta realizar a reserva da poltrona bem como escrever no log se o usuario consegui ou não
+ */
 public class ReservaAssento implements Runnable {
 
     private Passageiro passageiro;
     private int idAssento;
     private Bus onibus;
+    private String mensagemLog="";
+
     public ReservaAssento(Passageiro passageiro,int idAssento, Bus onibus){
         this.passageiro = passageiro;
         this.idAssento = idAssento;
@@ -21,8 +27,8 @@ public class ReservaAssento implements Runnable {
         // verificar se o assento esta vago
             synchronized (onibus.getAssentos()){
 
-
                 if (verificaAssento(onibus,idAssento)){
+
                     System.out.println(passageiro.getNome() +" "+ idAssento +" CONSEGUIU ...");
 
                     for (Assento assento: onibus.getAssentos()){
@@ -34,12 +40,18 @@ public class ReservaAssento implements Runnable {
                             System.out.println("reservado para:"+passageiro.getNome() );
                         }
                     }
-                    /*mensagem ="reservado para: "+passageiro.getNome() +" Poltrona: "+idAssento +"Ip: "+passageiro.getIpRequisicao() + "\n " +
-                            "data: "+passageiro.getDataAtual();*/
+                    mensagemLog= "NOME: " + passageiro.getNome()+ "\n"
+                            + "IP: " + passageiro.getIpRequisicao() +
+                            "\n" + "STATUS: CONSEGUIU RESERVAR";
+
                 }else{
-                    System.out.println("   NAO CONSEGUIU ");
+                    mensagemLog= "NOME: " + passageiro.getNome()+ "\n"
+                            + "IP: " + passageiro.getIpRequisicao() +
+                            "\n" + "STATUS: NÃO CONSEGUIU RESERVAR";
+                    System.out.println("----->   O "+passageiro.getNome() +" NÃO CONSEGUIU RESERVA");
                 }
-                //onibus.getAssentos().notifyAll();
+
+                Log.addLog(mensagemLog);
         }
 
     }

@@ -1,25 +1,42 @@
 
-
 NOME: Glenio
-IP: /0:0:0:0:0:0:0:1
+IP: /192.168.83.200
 STATUS: CONSEGUIU RESERVAR
- Data: Wed Oct 17 20:30:26 BRT 2018
- ------------------------
+DATA: Thu Oct 18 08:44:05 BRT 2018
+------------------------
 
-NOME: BOMBO
-IP: /0:0:0:0:0:0:0:1
-STATUS: CONSEGUIU RESERVAR
- Data: Wed Oct 17 20:30:46 BRT 2018
- ------------------------
-
-NOME: BOMBO
-IP: /0:0:0:0:0:0:0:1
+NOME: MAICO
+IP: /127.0.0.1
 STATUS: NÃO CONSEGUIU RESERVAR
- Data: Wed Oct 17 20:30:59 BRT 2018
- ------------------------
+DATA: Thu Oct 18 08:44:15 BRT 2018
+------------------------
 
-NOME: maico
-IP: /0:0:0:0:0:0:0:1
+NOME: CAMARGO+P
+IP: /127.0.0.1
 STATUS: CONSEGUIU RESERVAR
-DATA: Wed Oct 17 20:32:43 BRT 2018
- ------------------------
+DATA: Thu Oct 18 08:44:42 BRT 2018
+------------------------
+
+NOME: teste+glenio
+IP: /192.168.83.200
+STATUS: NÃO CONSEGUIU RESERVAR
+DATA: Thu Oct 18 08:44:42 BRT 2018
+------------------------
+
+NOME: camargo
+IP: /127.0.0.1
+STATUS: CONSEGUIU RESERVAR
+DATA: Thu Oct 18 08:47:50 BRT 2018
+------------------------
+
+NOME: camargo
+IP: /127.0.0.1
+STATUS: CONSEGUIU RESERVAR
+DATA: Thu Oct 18 09:03:08 BRT 2018
+------------------------
+
+NOME: camargo
+IP: /127.0.0.1
+STATUS: CONSEGUIU RESERVAR
+DATA: Thu Oct 18 09:08:52 BRT 2018
+------------------------

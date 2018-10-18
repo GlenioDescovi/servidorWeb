@@ -3,7 +3,6 @@ package reserva.servidor;
 import reserva.html.Html;
 import reserva.ReservaAssento;
 import reserva.html.RespostaReserva;
-import reserva.log.Log;
 import reserva.model.Assento;
 import reserva.model.Bus;
 import reserva.model.Passageiro;
@@ -11,7 +10,6 @@ import reserva.model.Passageiro;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import reserva.Utils;
@@ -79,13 +77,17 @@ public class ThreadConexao implements Runnable {
                 }
                 else {
 
+                    String erro="<br><br><br>" +
+                                    "<h1 class='text-center text-danger'>URL errada, recurso n&atilde;o encontrado ... </h1>" +
+                                "<br><br><br><br>";
+                    String mensagem404 = Html.CABECALHO + erro + Html.RODA_PE;
+
                     resposta = new RespostaHTTP(requisicao.getProtocolo(), 404, "Not Found");
-                    String erro="<p class='text-center texter-danger'>URL errada</p>";
-                    resposta.setConteudoResposta(erro.getBytes("UTF-8"));
+                    resposta.setConteudoResposta(mensagem404.getBytes("UTF-8"));
                 }
 
                 //converte o formato para o GMT espeficicado pelo protocolo HTTP
-                String dataFormatada = Utils.formatarDataGMT(new Date());
+                String dataFormatada = Utils.formatarDataGMT();
 
                 //cabeçalho padrão da resposta HTTP/1.1
                 resposta.setCabecalho("Location", "http://localhost:8080/");

@@ -1,6 +1,5 @@
 package reserva.servidor;
 
-import reserva.AssentosReservados;
 import reserva.log.Log;
 import reserva.model.Bus;
 
@@ -13,14 +12,15 @@ import java.util.concurrent.Executors;
 public class Servidor {
 
     public static void main(String[] args) throws IOException {
+
         /* cria um socket "servidor" associado a porta 8000
-         já aguardando conexões
-         */
+         já aguardando conexões */
         ServerSocket servidor = new ServerSocket(8080);
         ExecutorService pool = Executors.newFixedThreadPool(40);
-        Bus bus = new Bus();
+        Bus bus = new Bus(); // onibus criado com todos seus assentos
 
         //nova thread para o consumidor ficar observando o produtor
+
         //poll de thread fundiona do mesmo jeito que o pull de conexoes, inserido no java 5
         pool.execute(new Log.Escreve());
 

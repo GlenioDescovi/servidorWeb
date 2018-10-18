@@ -21,10 +21,6 @@ public class RespostaHTTP {
     private Map<String, List<String>> cabecalhos;
     private OutputStream saida;
 
-    public RespostaHTTP() {
-
-    }
-
     public RespostaHTTP(String protocolo, int codigoResposta, String mensagem) {
         this.protocolo = protocolo;
         this.codigoResposta = codigoResposta;

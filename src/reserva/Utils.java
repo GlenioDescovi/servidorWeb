@@ -10,7 +10,7 @@ import java.util.TimeZone;
  */
 public class Utils {
 
-    public static String formatarDataGMT(Date date) {
+    public static String formatarDataGMT() {
         //cria um formato para o GMT espeficicado pelo HTTP
         SimpleDateFormat formatador = new SimpleDateFormat("E, dd MMM yyyy hh:mm:ss", Locale.ENGLISH);
         formatador.setTimeZone(TimeZone.getTimeZone("GMT"));

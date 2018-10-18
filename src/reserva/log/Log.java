@@ -20,12 +20,11 @@ public class Log {
     private static final ArrayList<String> fila = new ArrayList<>();
 
     //produtor
-    public static void addLog(String a){
+    public static void addLog(String dataLog){
 
         synchronized (monitor){
-            System.out.println("ENTRO NO ADD LOG");
-            System.out.println(a);
-            fila.add(a);
+            System.out.println(dataLog);
+            fila.add(dataLog);
             monitor.notify();
         }
     }

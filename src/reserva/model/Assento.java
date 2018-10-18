@@ -25,9 +25,6 @@ public class Assento {
         this.idAssento = idAssento;
     }
 
-    public Assento() {
-    }
-
     public int getIdAssento() {
         return idAssento;
     }

@@ -1,6 +1,5 @@
 package reserva.html;
 
-import reserva.log.Log;
 import reserva.model.Assento;
 import java.util.ArrayList;
 
@@ -10,17 +9,11 @@ import java.util.ArrayList;
  */
 public class RespostaReserva {
 
-    String mensagem="";
+    String mensagem="";//mensagem de erro ou de sucesso no reservar poltrona
 
     public String mensagem(ArrayList<Assento> assentos , int idBanco, String nomeUsuario){
-        String log="";
 
         if (assentos.get(idBanco).getPassageiro().getNome().equals(nomeUsuario)){
-
-            log= "NOME: " + assentos.get(idBanco).getPassageiro().getNome()+ "\n"
-                    + "IP: " + assentos.get(idBanco).getPassageiro().getIpRequisicao() +
-                        "\n" + "STATUS: CONSEGUIU RESERVAR";
-            Log.addLog(log);
 
             mensagem="<div class=\"container\">\n" +
                         "<div class=\"row\">"+
@@ -39,11 +32,6 @@ public class RespostaReserva {
                     "</div>";
 
         }else{
-
-            log= "NOME: " + assentos.get(idBanco).getPassageiro().getNome()+ "\n"
-                    + "IP: " + assentos.get(idBanco).getPassageiro().getIpRequisicao() +
-                    "\n" + "STATUS: NÃO CONSEGUIU RESERVAR";
-            Log.addLog(log);
 
             mensagem="<div class=\"container\">\n" +
                         "<div class=\"row\">"+
